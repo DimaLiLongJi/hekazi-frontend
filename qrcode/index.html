@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="language" content="en">
+    <title>闺蜜你好</title>
+    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <meta content="telephone=no, address=no" name="format-detection">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <style>
+        *,html,body{
+            margin:0;
+            padding:0;
+            background-color: #bd252a;
+        }
+        .body{
+            width:100vw;
+            height:100vh;
+            margin:0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="body">
+    <div>
+        <img id="qrcode" src=""  style="width:100%;display: block;"/>
+    </div>
+</div>
+
+<script>
+  function sumWeight(list) {
+    var sum = 0;
+    list.forEach(function(li) {
+      sum += li.weight;
+    });
+    return sum;
+  }
+  
+  function selectQrcode(prizeList) {
+    var weightSum = sumWeight(prizeList);
+    var radom = Math.random()*weightSum;
+
+    var last = 0;
+    prizeList.forEach(function (pri) {
+      pri.from = last;
+      last += pri.weight;
+      pri.to = last;
+    });
+
+    var prize = null;
+    prizeList.forEach(function (pri) {
+      if (radom >= pri.from && radom <= pri.to) prize = pri;
+    });
+    console.log(888888, radom, prizeList);
+    console.log(2222223, prize);
+    return prize.src;
+  }
+  var list = [{
+    src: '../qrcode/imgs/1.png',
+    weight: 20,
+  }, {
+    src: '../qrcode/imgs/2.png',
+    weight: 20,
+  }, {
+    src: '../qrcode/imgs/3.png',
+    weight: 20,
+  }, {
+    src: '../qrcode/imgs/4.png',
+    weight: 20,
+  }, {
+    src: '../qrcode/imgs/5.png',
+    weight: 20,
+  }];
+
+  var src = selectQrcode(list);
+  console.log(22222222, );
+
+  window.onload = function() {
+    var qrcode = document.getElementById('qrcode');
+    console.log(8889, qrcode);
+    qrcode.src = src;
+  }
+</script>
+
+</body>
+
+</html>
