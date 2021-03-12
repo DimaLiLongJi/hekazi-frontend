@@ -1,0 +1,37 @@
+<div class="material-creator-container">
+  <nz-modal
+    [(nzVisible)]="modalVisible"
+    nzMask="true"
+    nzZIndex="1001"
+    nzTitle="新增素材"
+    nzMaskClosable="false"
+    (nzOnCancel)="handleCancel()"
+    (nzOnOk)="handleOnOk()"
+    (nzAfterOpen)="afterOpen()"
+    (nzAfterClose)="afterClose()"
+    [nzOkLoading]="isOkLoading"
+    nzClassName="material-creator-modal"
+    [nzStyle]="{ top: '20px' }"
+  >
+  <form nz-form [formGroup]="validateForm">
+    <nz-form-item class="ant-form-item ant-row">
+      <nz-form-label [nzSm]="5" [nzXs]="12" nzRequired nzFor="name">素材名</nz-form-label>
+      <nz-form-control [nzSm]="6" [nzXs]="12" nzErrorTip="素材名必填">
+        <input nz-input id="name" formControlName="name" placeHolder="请填写素材名" />
+      </nz-form-control>
+      <nz-form-label [nzSm]="5" [nzXs]="12" nzFor="background">背景色</nz-form-label>
+      <nz-form-control [nzSm]="6" [nzXs]="12">
+        <input nz-input id="background" formControlName="background" placeHolder="请填写素材名" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item class="ant-form-item ant-row">
+      <nz-form-label [nzSm]="4" [nzXs]="24">素材</nz-form-label>
+      <nz-form-control [nzSm]="18" [nzXs]="24">
+        <nz-upload [nzAction]="rootUrl + '/api/material/addFile'" id="file" [(nzFileList)]="uploadFileList" (nzChange)="upload($event)">
+          <button nz-button><i nz-icon nzType="upload"></i><span>上传</span></button>
+        </nz-upload>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+  </nz-modal>
+</div>

@@ -1,0 +1,62 @@
+<div class="material-list-container sub-page-container">
+  <nz-page-header nzTitle="素材列表"></nz-page-header>
+  <div class="operating-container">
+    <div nz-row>
+      <span class="select-title">名称搜索：</span>
+      <input class="search-keyword" nz-input [(ngModel)]="searchData.keyword" placeholder="输入素材名" />
+    </div>
+    <div nz-row>
+      <span class="select-title">归档状态：</span>
+      <nz-select nzPlaceHolder="选择归档状态" [(ngModel)]="searchData.isOn">
+        <nz-option nzLabel="全部状态" nzValue=""></nz-option>
+        <nz-option nzLabel="未归档" nzValue="1"></nz-option>
+        <nz-option nzLabel="归档" nzValue="2"></nz-option>
+      </nz-select>
+    </div>
+    <div nz-row>
+      <button nz-button nzType="primary" (click)="pageIndexChange(1)">搜索素材</button>
+      <button nz-button nzType="primary" (click)="materialCreatorVisible = true;">新增素材</button>
+    </div>
+  </div>
+  <div class="list-container">
+    <nz-table
+      #materialTable
+      nzTitle="素材列表"
+      nzFrontPagination="false"
+      [nzData]="materialList"
+      [nzTotal]="total"
+      [nzBordered]="true"
+      [nzPageIndex]="searchData.pageIndex"
+      [nzPageSize]="searchData.pageSize"
+      (nzPageIndexChange)="pageIndexChange($event)"
+    >
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>名称</th>
+          <th>创建人</th>
+          <th>创建时间</th>
+          <th>状态</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let material of materialTable.data">
+          <td>{{ material.id }}</td>
+          <td>{{ material.name }}</td>
+          <td>{{ material.creator.name }}</td>
+          <td>{{ material.createDate | date: "MM/dd/yy" }}</td>
+          <td>{{ material.deleteDate | status }}</td>
+          <td>
+            <button *ngIf="!material.deleteDate" nz-button nzType="danger" nzSize="small" (click)="deleteMaterial(material, true)">归档</button>
+            <button *ngIf="material.deleteDate" nz-button nzType="primary" nzSize="small" (click)="deleteMaterial(material, false)">未归档</button>
+            <nz-divider nzType="vertical"></nz-divider>
+            <button nz-button nzType="primary" nzSize="small" (click)="editMaterial(material.id)">编辑</button>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </div>
+  <app-material-editor [materialId]="activeMaterialId" [modalVisible]="materialEditorVisible" (changeModal)="changeMaterialEditorModal($event)"></app-material-editor>
+  <app-material-creator  [modalVisible]="materialCreatorVisible" (changeModal)="changeMaterialCreatorModal($event)"></app-material-creator>
+</div>
