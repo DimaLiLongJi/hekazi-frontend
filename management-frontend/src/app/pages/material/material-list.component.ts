@@ -1,6 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Permission, PermissionDetail } from '@/types';
-import { PermissionService } from '@/service/permission.service';
 import { Subscription } from 'rxjs';
 import { NzMessageService } from 'ng-zorro-antd';
 import { Material, MaterialDetail } from '@/types/material';
@@ -24,11 +22,17 @@ export class MaterialListComponent implements OnInit, OnDestroy {
   };
   public materialList: MaterialDetail[] = [];
   public total = null;
+
+  public getMaterialList$: Subscription;
+  public updateMaterial$: Subscription;
+
+  public activeMaterialId: number;
+  public activeMaterialImgUrl: string;
+  public activeMaterialBackground: string;
+
   public materialCreatorVisible = false;
   public materialEditorVisible = false;
-  public getMaterialList$: Subscription;
-  public activeMaterialId: number;
-  public updateMaterial$: Subscription;
+  public materialPreviewerVisible = false;
 
   constructor(
     private service: MaterialService,
@@ -106,5 +110,14 @@ export class MaterialListComponent implements OnInit, OnDestroy {
     this.getMaterialList(this.searchData);
   }
   
+  public previewMaterial(background: string, url: string) {
+    this.activeMaterialBackground = background;
+    this.activeMaterialImgUrl = url;
+    this.materialPreviewerVisible = true;
+  }
+
+  public changeMaterialPreviewerModal(visible: boolean) {
+    this.materialPreviewerVisible = visible;
+  }
 
 }

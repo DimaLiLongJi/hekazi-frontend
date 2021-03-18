@@ -1,0 +1,18 @@
+<div class="material-previewer-container">
+  <nz-modal
+    [(nzVisible)]="modalVisible"
+    nzMask="true"
+    nzZIndex="1001"
+    nzTitle="素材预览"
+    nzMaskClosable="false"
+    (nzOnCancel)="handleCancel()"
+    (nzOnOk)="addModule()"
+    (nzAfterClose)="afterClose()"
+    [nzOkLoading]="isOkLoading"
+    nzClassName="material-previewer-modal"
+  >
+    <div class="previewer-container" [ngStyle]="{'background': materialBackground}" >
+      <img [src]="staticUrl + materialImgUrl" />
+    </div>
+  </nz-modal>
+</div>

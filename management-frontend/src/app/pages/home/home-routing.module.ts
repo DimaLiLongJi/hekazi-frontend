@@ -30,6 +30,10 @@ const routes: Routes = [
         path: 'material',
         loadChildren: () => import('../material/material-list.module').then(m => m.PermissionListModule)
       },
+      {
+        path: 'qrcode',
+        loadChildren: () => import('../qrcode-list/qrcode-list.module').then(m => m.QrcodeListModule)
+      },
     ]
   }
 ];

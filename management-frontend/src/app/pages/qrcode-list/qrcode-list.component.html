@@ -1,0 +1,63 @@
+<div class="qrocde-list-container sub-page-container">
+  <nz-page-header nzTitle="二维码页面列表"></nz-page-header>
+  <div class="operating-container">
+    <div nz-row>
+      <span class="select-title">名称搜索：</span>
+      <input class="search-keyword" nz-input [(ngModel)]="searchData.keyword" placeholder="输入素材名" />
+    </div>
+    <div nz-row>
+      <span class="select-title">归档状态：</span>
+      <nz-select nzPlaceHolder="选择归档状态" [(ngModel)]="searchData.isOn">
+        <nz-option nzLabel="全部状态" nzValue=""></nz-option>
+        <nz-option nzLabel="未归档" nzValue="1"></nz-option>
+        <nz-option nzLabel="归档" nzValue="2"></nz-option>
+      </nz-select>
+    </div>
+    <div nz-row>
+      <button nz-button nzType="primary" (click)="pageIndexChange(1)">搜索素材</button>
+      <button nz-button nzType="primary" (click)="qrcodeCreatorVisible = true;">新增素材</button>
+    </div>
+  </div>
+  <div class="list-container">
+    <nz-table
+      #qrcodeTable
+      nzTitle="二维码页面列表"
+      nzFrontPagination="false"
+      [nzData]="qrcodeList"
+      [nzTotal]="total"
+      [nzBordered]="true"
+      [nzPageIndex]="searchData.pageIndex"
+      [nzPageSize]="searchData.pageSize"
+      (nzPageIndexChange)="pageIndexChange($event)"
+    >
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>名称</th>
+          <th>创建人</th>
+          <th>创建时间</th>
+          <th>状态</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let qrcode of qrcodeTable.data">
+          <td>{{ qrcode.id }}</td>
+          <td>{{ qrcode.name }}</td>
+          <td>{{ qrcode.creator.name }}</td>
+          <td>{{ qrcode.createDate | date: "MM/dd/yy" }}</td>
+          <td>{{ qrcode.deleteDate | status }}</td>
+          <td>
+            <button nz-button nzType="primary" nzSize="small" (click)="copyLink(qrcode.id)">复制连接</button>
+            <nz-divider nzType="vertical"></nz-divider>
+            <button *ngIf="!qrcode.deleteDate" nz-button nzType="danger" nzSize="small" (click)="deleteQrcode(qrcode, true)">归档</button>
+            <button *ngIf="qrcode.deleteDate" nz-button nzType="primary" nzSize="small" (click)="deleteQrcode(qrcode, false)">未归档</button>
+            <nz-divider nzType="vertical"></nz-divider>
+            <button nz-button nzType="primary" nzSize="small" (click)="editQrcode(qrcode.id)">编辑</button>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </div>
+  <app-qrcode-creator [qrcodeId]="activeQrcodeId" [modalVisible]="qrcodeCreatorVisible" (changeModal)="changeQrcodeCreatorModal($event)"></app-qrcode-creator>
+</div>

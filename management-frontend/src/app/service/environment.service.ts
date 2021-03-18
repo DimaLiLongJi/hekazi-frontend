@@ -6,10 +6,15 @@ import { environment } from '../../environments/environment';
 })
 export class EnvironmentServiceService {
   public environment: boolean = environment.production;
-  public basePrefix: string = environment.production ? '/hlj/global/manager' : '/manager';
+  public basePrefix: string = environment.production ? '/manager' : '/manager';
 }
 
 export const API_URL = new InjectionToken<string>('api_url', {
   providedIn: 'root',
-  factory: () => (environment.production ? '/hlj/global/manager' : '/manager')
+  factory: () => (environment.production ? '/manager' : '/manager')
+});
+
+export const STATIC_API_URL = new InjectionToken<string>('static_api_url', {
+  providedIn: 'root',
+  factory: () => (environment.production ? '/manager/stataic/' : '/manager/static/')
 });

@@ -48,6 +48,8 @@
           <td>{{ material.createDate | date: "MM/dd/yy" }}</td>
           <td>{{ material.deleteDate | status }}</td>
           <td>
+            <button nz-button nzType="primary" nzSize="small" (click)="previewMaterial(material.background, material.file?.name)">预览</button>
+            <nz-divider nzType="vertical"></nz-divider>
             <button *ngIf="!material.deleteDate" nz-button nzType="danger" nzSize="small" (click)="deleteMaterial(material, true)">归档</button>
             <button *ngIf="material.deleteDate" nz-button nzType="primary" nzSize="small" (click)="deleteMaterial(material, false)">未归档</button>
             <nz-divider nzType="vertical"></nz-divider>
@@ -58,5 +60,6 @@
     </nz-table>
   </div>
   <app-material-editor [materialId]="activeMaterialId" [modalVisible]="materialEditorVisible" (changeModal)="changeMaterialEditorModal($event)"></app-material-editor>
-  <app-material-creator  [modalVisible]="materialCreatorVisible" (changeModal)="changeMaterialCreatorModal($event)"></app-material-creator>
+  <app-material-creator [modalVisible]="materialCreatorVisible" (changeModal)="changeMaterialCreatorModal($event)"></app-material-creator>
+  <app-material-previewer [materialImgUrl]="activeMaterialImgUrl" [materialBackground]="activeMaterialBackground" [modalVisible]="materialPreviewerVisible" (changeModal)="changeMaterialPreviewerModal($event)"></app-material-previewer>
 </div>
