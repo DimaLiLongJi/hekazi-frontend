@@ -1,0 +1,76 @@
+@import "./reset.less";
+@import "./global.less";
+@import "antd-mobile/dist/antd-mobile.less";
+
+// #root, body {
+    // max-height: 100vh;
+    // overflow: scroll;
+// }
+
+.route-wrapper {
+    background-color: #ffffff;
+}
+
+.am-button,
+.am-button-primary {
+    &::before {
+        border: none !important;
+    }
+}
+
+.am-modal-wrap {
+    .am-modal-content {
+        .am-modal-close {
+            border: 1px solid #4d4d4d;
+            width: 43px;
+            height: 43px;
+            border-radius: 100%;
+            box-sizing: content-box;
+            overflow: hidden;
+            top: 34px;
+            right: 34px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            >span {
+                width: 22px;
+                height: 22px;
+                line-height: 22px;
+            }
+        }
+    }
+}
+
+.am-toast-notice {
+    .am-toast-text {
+        max-width: 100vh;
+        border-radius: 20px;
+        div {
+            font-size: 48px;
+            color: #ffffff;
+            margin: 46px 26px;
+        }
+    }
+    .am-toast-text {
+        &.am-toast-text-icon {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0.8 !important;
+            background: #000000;
+            border-radius: 20px;
+            width: 300px;
+            height: 266px;
+            .am-icon-lg {
+                width: 84px;
+                height: 84px;
+                margin-bottom: 22px !important;
+                &+.am-toast-text-info {
+                    margin: 6px auto;
+                    font-size: 34px !important;
+                }
+            }
+        }
+    }
+}

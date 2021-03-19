@@ -1,0 +1,48 @@
+{
+  "base": {
+    "dev": {
+      "baseUrl": "/h5",
+      "serverUrl": "/manager/api",
+      "publicPath": "http://localhost:3001/",
+      "staticPath": "/manager/static/"
+    },
+    "test": {
+      "baseUrl": "/h5",
+      "serverUrl": "/manager/api",
+      "publicPath": "/h5/",
+      "staticPath": "/manager/static/"
+    },
+    "prod": {
+      "baseUrl": "/h5",
+      "serverUrl": "/manager/api",
+      "publicPath": "/h5/",
+      "staticPath": "/manager/static"
+    }
+  },
+  "server": {
+    "port": 3000,
+    "proxy": [
+      {
+        "baseUrl": "/manager/api",
+        "target": "http://localhost:4005/manager/api",
+        "commit": "本地测试环境的接口代理地址",
+        "pathRewrite": {
+          "^/manager/api/": "/"
+        },
+        "changeOrigin": true
+      },
+      {
+        "baseUrl": "/manager/static",
+        "target": "http://localhost:4005/manager/static",
+        "commit": "本地测试环境的静态资源代理地址",
+        "pathRewrite": {
+          "^/manager/static/": "/"
+        },
+        "changeOrigin": true
+      }
+    ],
+    "hmr": {
+      "port": 3001
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "compileOnSave": false,
+  "buildOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      // "Actions/*": ["public/store/actions/*"],
+      "Components/*": ["public/components/*"],
+      "Pages/*": ["public/pages/*"],
+      "Constants/*": ["public/constants/*"],
+      // "Containers/*": ["public/containers/*"],
+      "Utils/*": ["public/utils/*"],
+      // "Axios": ["public/utils/axios"],
+      "Service": ["public/utils/service"],
+    },
+    "outDir": "build",
+    "module": "commonjs",
+    "target": "es5",
+    "jsx": "react",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": true,
+    "removeComments": false,
+    "sourceMap": false,
+    "inlineSourceMap": true,
+    "noEmitHelpers": false,
+    "lib": ["dom", "es2015.promise", "es5", "es2017", "es2015"],
+    "allowJs": true,
+    "types": [
+      "node",
+      "react",
+    ],
+    "resolveJsonModule": true
+  },
+  "include": [
+    "public/**/*",
+    "project.config.json"
+  ],
+  "exclude": [
+    "node_modules",
+    "build",
+  ]
+}
