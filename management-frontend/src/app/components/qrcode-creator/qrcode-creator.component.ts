@@ -229,6 +229,7 @@ export class QrcodeCreatorComponent implements OnInit, OnDestroy {
     this.getMaterialList$ = this.materialService.getList().subscribe(res => {
       if (res.success) this.materialList = res.data[0] || [];
       else this.message.error('获取素材列表失败');
+      console.log(2313, this.materialList);
     });
   }
 }
