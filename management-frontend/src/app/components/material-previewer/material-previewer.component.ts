@@ -27,4 +27,7 @@ export class MaterialPreviewerComponent {
       this.changeModal.emit(false);
       this.isOkLoading = false;
     }
+
+    public afterClose() {
+    }
 }

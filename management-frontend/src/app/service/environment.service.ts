@@ -16,5 +16,5 @@ export const API_URL = new InjectionToken<string>('api_url', {
 
 export const STATIC_API_URL = new InjectionToken<string>('static_api_url', {
   providedIn: 'root',
-  factory: () => (environment.production ? '/manager/stataic/' : '/manager/static/')
+  factory: () => (environment.production ? '/manager/static/' : '/manager/static/')
 });

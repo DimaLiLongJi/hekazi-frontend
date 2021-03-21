@@ -22,7 +22,7 @@
     <nz-form-item class="ant-form-item ant-row">
       <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>素材</nz-form-label>
       <nz-form-control [nzSm]="15" [nzXs]="24" formArrayName="qrcodeMaterialList">
-        <div *ngFor="let qrcodeMaterial of validateForm.controls['qrcodeMaterialList'].controls;let i = index" [formGroupName]="i">
+        <div *ngFor="let qrcodeMaterial of qrcodeMaterials.controls;let i = index" [formGroupName]="i">
           <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="material">选择素材</nz-form-label>
           <nz-form-control [nzSm]="15" [nzXs]="24" nzErrorTip="素材必选">
             <nz-select nzShowSearch nzPlaceHolder="请选择素材" nzPlaceHolder="选择素材" formControlName="material">
