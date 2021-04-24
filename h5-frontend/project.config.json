@@ -1,22 +1,22 @@
 {
   "base": {
     "dev": {
-      "baseUrl": "/h5",
+      "baseUrl": "/frontend",
       "serverUrl": "/manager/api",
       "publicPath": "http://localhost:3001/",
-      "staticPath": "/manager/static/"
+      "managerStaticPath": "/manager/static/"
     },
     "test": {
-      "baseUrl": "/h5",
+      "baseUrl": "/frontend",
       "serverUrl": "/manager/api",
-      "publicPath": "/h5/",
-      "staticPath": "/manager/static/"
+      "publicPath": "/static/",
+      "managerStaticPath": "/manager/static/"
     },
     "prod": {
-      "baseUrl": "/h5",
+      "baseUrl": "/frontend",
       "serverUrl": "/manager/api",
-      "publicPath": "/h5/",
-      "staticPath": "/manager/static"
+      "publicPath": "/static/",
+      "managerStaticPath": "/manager/static/"
     }
   },
   "server": {

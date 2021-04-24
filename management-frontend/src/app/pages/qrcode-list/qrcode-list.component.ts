@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 import { NzMessageService } from 'ng-zorro-antd';
 import { Qrcode, QrcodeDetail } from '@/types/qrcode';
 import { QrcodeService } from '@/service/qrcode.service';
-import { API_URL } from '@/service/environment.service';
+import { API_URL, H5_URL } from '@/service/environment.service';
 
 @Component({
   selector: 'app-qrcode-list',
@@ -31,7 +31,7 @@ export class QrcodeListComponent implements OnInit, OnDestroy {
   constructor(
     private service: QrcodeService,
     private message: NzMessageService,
-    @Inject(API_URL) public apiUrl: string,
+    @Inject(H5_URL) public h5Url: string,
   ) { }
 
   public ngOnInit() {
@@ -107,7 +107,7 @@ export class QrcodeListComponent implements OnInit, OnDestroy {
   
   public copyLink(id: number) {
       // TODO 增加复制连接
-      const url = `${this.apiUrl}/qrcode-created/${id}`;
+      const url = `${window.location.origin}${this.h5Url}/qrcode/${id}`;
       const transfer = document.createElement("input");
       document.body.appendChild(transfer);
       transfer.value = url; // 这里表示想要复制的内容

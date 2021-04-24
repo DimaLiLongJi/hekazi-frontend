@@ -22,8 +22,8 @@ export default class ImageContainer extends React.Component<Props, State> {
     if (!this.props.match.params.id) Toast.fail('缺少图片id，加载失败');
     else {
       getMethod<ImageInfo>(`${Config.serverRoot}/qrcode/random/${this.props.match.params.id}`).then(res => {
+        Toast.hide();
         this.setState({imageInfo: res.data});
-        Toast.loading('');
       });
     }
   }
@@ -35,7 +35,7 @@ export default class ImageContainer extends React.Component<Props, State> {
         <Helmet>
           <title>{this.state.imageInfo.name}</title>
         </Helmet>
-        <img className="image-container" src={`${Config.staticPath}${this.state.imageInfo.file.name}`} alt={this.state.imageInfo.name}/>
+        <img className="image-container" src={`${Config.managerStaticPath}${this.state.imageInfo.file.name}`} alt={this.state.imageInfo.name}/>
       </React.Fragment>
     );
   }

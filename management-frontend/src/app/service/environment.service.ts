@@ -9,6 +9,11 @@ export class EnvironmentServiceService {
   public basePrefix: string = environment.production ? '/manager' : '/manager';
 }
 
+export const H5_URL = new InjectionToken<string>('h5_url', {
+  providedIn: 'root',
+  factory: () => (environment.production ? '/frontend' : '/frontend')
+});
+
 export const API_URL = new InjectionToken<string>('api_url', {
   providedIn: 'root',
   factory: () => (environment.production ? '/manager' : '/manager')
